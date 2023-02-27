@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     public bool activeTP;
+    public bool activeOP;
 
+    public Transform posOP;
     public Transform posTP;
     public Transform posPP;
 
@@ -37,15 +39,21 @@ public class CameraControl : MonoBehaviour
     {
         Cam();
 
-        if (activeTP == false && Input.GetKeyDown(KeyCode.Tab))
+        if (activeOP == false && Input.GetKeyDown(KeyCode.Tab))
         {
-            activeTP = true;
+            activeOP = true;
             transform.position = posPP.position;
         }
-        else if(activeTP == true && Input.GetKeyDown(KeyCode.Tab))
+        else if (activeTP == true && Input.GetKeyDown(KeyCode.Tab))
         {
             activeTP = false;
             transform.position = posTP.position;
+            transform.LookAt(player);
+        }
+        else if (activeTP == true && Input.GetKeyDown(KeyCode.Tab))
+        {
+            activeTP = true;
+            transform.position = posOP.position;
             transform.LookAt(player);
         }
     }
